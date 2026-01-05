@@ -146,11 +146,12 @@ body {
 }
 
 .box-container {
-  margin: 1rem 0 3rem 0;
+  margin: 1rem 0 3.5rem 0;
   height: 220px;
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .omikuji-box-img {
@@ -252,13 +253,20 @@ body {
 .result-content {
   position: relative;
   z-index: 6;
-  width: 65%;
-  max-width: 300px;
+  width: 80%; /* 幅を広げて読みやすく */
+  max-width: 320px;
   text-align: center;
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 1s 0.8s, transform 1s 0.8s;
   color: var(--ink-black);
+  /* テキストの可読性を上げるための工夫 */
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: 2rem 1.5rem;
+  box-shadow: 0 0 40px 20px rgba(255, 255, 255, 0.4);
+  border-radius: 4px;
 }
 
 .result-container.open .result-content {
