@@ -1,76 +1,52 @@
 
-// Fortune Data: Focused on Love and "Good Omens"
 const fortunes = [
     {
         type: "大吉",
-        desc: "運命の糸が強く引かれています。<br>あなたの笑顔が輝き、想いが届く最高の時。",
-        details: {
-            wish: "迷わず進めば叶う",
-            wait: "ときめきと共に来る",
-            love: "情熱的な展開あり",
-            match: "理想的な相手との縁"
-        }
-    },
-    {
-        type: "吉",
-        desc: "穏やかな幸せが満ちてきます。<br>飾らない自分自身を大切にすることで運気上昇。",
-        details: {
-            wish: "時間はかかるが叶う",
-            wait: "頼りになる人が来る",
-            love: "ゆっくり愛を育める",
-            match: "友人の紹介に吉あり"
-        }
+        desc: "天の恵みを受け、万事思うがままに進みます。運命の人はすぐ傍に。今は恐れず、心のままに羽ばたいて吉。",
+        details: { wish: "速やかに叶う", wait: "必ず来る", love: "最高の相性", match: "良縁あり" }
     },
     {
         type: "中吉",
-        desc: "小さな幸せが積み重なる時。<br>感謝の気持ちを言葉にすると、恋の女神が微笑みます。",
-        details: {
-            wish: "努力次第で叶う",
-            wait: "遅れるが必ず来る",
-            love: "素直さが鍵となる",
-            match: "趣味の場に良縁あり"
-        }
+        desc: "穏やかな光が差し込み、良き知らせが届くでしょう。誠実な心が一層の幸運を呼び寄せます。",
+        details: { wish: "望み通りに叶う", wait: "便りあり", love: "思いやりが大切", match: "進めて良し" }
     },
     {
         type: "小吉",
-        desc: "少しの勇気が大きな一歩に。<br>変化を恐れず、新しい自分を見せるチャンスです。",
-        details: {
-            wish: "焦らず待てば吉",
-            wait: "予期せぬ連絡あり",
-            love: "自分磨きが幸運呼ぶ",
-            match: "意外な場所に縁あり"
-        }
+        desc: "小さな幸せを慈しむことで、大きな幸運へと繋がります。焦らず一歩ずつ、絆を深めていきましょう。",
+        details: { wish: "遅れて叶う", wait: "現れる", love: "素直に伝えて", match: "友人を通じて吉" }
+    },
+    {
+        type: "吉",
+        desc: "日常の中に愛が満ちています。周囲への感謝を忘れなければ、道は自ずと拓かれるでしょう。",
+        details: { wish: "叶うが慎重に", wait: "遅くなる", love: "誠実さが鍵", match: "時間をかけて" }
     },
     {
         type: "末吉",
-        desc: "夜明け前が一番暗いもの。<br>今は力を蓄える時。未来の恋の花言葉は「希望」。",
-        details: {
-            wish: "今は耐えるが勝ち",
-            wait: "来ないが、便りあり",
-            love: "相手を信じる心が吉",
-            match: "今は時期を待とう"
-        }
+        desc: "今は耐え、自分を磨く時期。嵐の後は必ず美しい虹がかかります。希望を捨てずに待ちましょう。",
+        details: { wish: "今は困難", wait: "来ないが希望あり", love: "相手を信じて", match: "見送るが吉" }
+    },
+    {
+        type: "凶",
+        desc: "心に影がさす時。今は動かず、静かに己を見つめ直しましょう。夜はやがて明け、光が戻ります。",
+        details: { wish: "叶い難い", wait: "来ない", love: "言葉に注意", match: "慎むべし" }
+    },
+    {
+        type: "大凶",
+        desc: "試練の時。しかし、この底を打てば後は飛躍しかありません。誠心誠意事に当たれば、道は開けます。",
+        details: { wish: "叶わぬ", wait: "現れず", love: "不和の兆し。我慢", match: "控えよ" }
     }
 ];
 
-// Elements
 const screens = {
     start: document.getElementById('start-screen'),
     anim: document.getElementById('anim-screen'),
     result: document.getElementById('result-screen')
 };
 
-const buttons = {
-    draw: document.getElementById('draw-btn'),
-    retry: document.getElementById('retry-btn')
-};
-
 const dom = {
-    app: document.getElementById('app'),
     shakingBox: document.querySelector('.shaking-box'),
     stick: document.getElementById('stick'),
     resultContainer: document.querySelector('.result-container'),
-    // Result Text Elements
     title: document.getElementById('result-title'),
     overview: document.getElementById('result-overview'),
     dWish: document.getElementById('detail-wish'),
@@ -79,56 +55,37 @@ const dom = {
     dMatch: document.getElementById('detail-match')
 };
 
-// Utils
-const playSound = (type) => {
-    // Optional: Add Audio Later
-};
-
 const switchScreen = (toScreen) => {
-    // Remove active from all
     Object.values(screens).forEach(el => el.classList.remove('active'));
-    // Add active to target
     toScreen.classList.add('active');
 };
 
-// Logic
 const drawOmikuji = () => {
-    // 1. Switch to Anim Screen
     switchScreen(screens.anim);
-    
-    // 2. Start Shaking
     dom.shakingBox.classList.add('shake-anim');
     
-    // 3. Simple Timeout for Shake Duration (2.5s)
     setTimeout(() => {
-        // Stop shaking
         dom.shakingBox.classList.remove('shake-anim');
-        
-        // Eject Stick Animation (can be elaborated)
         dom.stick.classList.remove('hidden');
         dom.stick.classList.add('ejected');
         
-        // Wait for stick to be seen
         setTimeout(() => {
             showResult();
-        }, 1000);
-        
-    }, 2500);
+        }, 800);
+    }, 2000);
 };
 
 const showResult = () => {
-    // Randomize
     const fate = fortunes[Math.floor(Math.random() * fortunes.length)];
     
-    // Populate Data
     dom.title.textContent = fate.type;
     dom.overview.innerHTML = fate.desc;
     
-    // Set colors based on luck (optional styling)
-    if (fate.type === "大吉") {
-        dom.title.style.color = "#d32f2f"; // Bright red
+    // 凶・大凶の演出
+    if (fate.type === "凶" || fate.type === "大凶") {
+        dom.title.classList.add('bad-luck');
     } else {
-        dom.title.style.color = "#c2185b"; // Standard deep red
+        dom.title.classList.remove('bad-luck');
     }
 
     dom.dWish.textContent = fate.details.wish;
@@ -136,57 +93,35 @@ const showResult = () => {
     dom.dLove.textContent = fate.details.love;
     dom.dMatch.textContent = fate.details.match;
     
-    // Switch Screen
     switchScreen(screens.result);
-    
-    // Trigger Unfurl Animation
     setTimeout(() => {
         dom.resultContainer.classList.add('open');
     }, 100);
     
-    // Reset Stick for next time
     dom.stick.classList.remove('ejected');
-    dom.stick.classList.add('hidden');
 };
 
 const resetGame = () => {
     dom.resultContainer.classList.remove('open');
-    // Wait for close animation
     setTimeout(() => {
         switchScreen(screens.start);
-    }, 500);
+    }, 600);
 };
 
-// Sakura Effect
 const createSakura = () => {
     const container = document.getElementById('sakura-container');
     const petal = document.createElement('div');
     petal.classList.add('petal');
-    
-    // Random sizes
-    const size = Math.random() * 10 + 5 + 'px';
+    const size = Math.random() * 8 + 4 + 'px';
     petal.style.width = size;
     petal.style.height = size;
-    
-    // Random horizontal position
     petal.style.left = Math.random() * 100 + 'vw';
-    
-    // Random animation duration
-    petal.style.animationDuration = Math.random() * 3 + 4 + 's'; // 4-7s
+    petal.style.animationDuration = Math.random() * 4 + 6 + 's';
     petal.style.animationDelay = Math.random() * 5 + 's';
-    
     container.appendChild(petal);
-    
-    // Cleanup
-    setTimeout(() => {
-        petal.remove();
-    }, 8000);
+    setTimeout(() => petal.remove(), 10000);
 };
 
-// Init
-buttons.draw.addEventListener('click', drawOmikuji);
-buttons.retry.addEventListener('click', resetGame);
-
-// Start Sakura Shower
-setInterval(createSakura, 300);
-
+document.getElementById('draw-btn').addEventListener('click', drawOmikuji);
+document.getElementById('retry-btn').addEventListener('click', resetGame);
+setInterval(createSakura, 400);

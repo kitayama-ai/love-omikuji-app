@@ -1,14 +1,15 @@
-/* CSS Variables for Premium Theme */
+/* 高級感あふれる「朱色」ベースのデザインシステム */
 :root {
-  --primary-pink: #fce4ec;
-  --accent-pink: #f06292;
-  --deep-red: #c2185b;
-  --text-dark: #3e2723;
-  --gold-main: #d4af37;
-  --gold-light: #f9f1d0;
-  --gold-shadow: #8a6e2f;
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(255, 255, 255, 0.9);
+  --vermilion: #b22d14; /* 朱色 (Shu-iro) - 伝統的な深い朱 */
+  --vermilion-light: #e64a19;
+  --gold-primary: #af8b38; /* 落ち着いた金 (Keshizumi-kin) */
+  --gold-accent: #d4af37;
+  --cream-base: #fdfaf5; /* 和紙のような温かみのある白 */
+  --ink-black: #1a1a1a;
+  --text-main: #333333;
+  --glass-white: rgba(255, 255, 255, 0.85);
+  --border-gold: rgba(175, 139, 56, 0.4);
+  
   --font-serif: "Shippori Mincho", serif;
   --font-antique: "Zen Antique", serif;
 }
@@ -22,16 +23,17 @@
 
 body {
   font-family: var(--font-serif);
-  color: var(--text-dark);
+  color: var(--text-main);
   height: 100vh;
   overflow: hidden;
   background: url("assets/bg.png") no-repeat center center/cover fixed;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--cream-base);
 }
 
-/* Background Overlay for better text contrast if needed */
+/* 背景のオーバーレイ：神聖な空気感を演出 */
 .bg-overlay {
   position: fixed;
   top: 0;
@@ -40,20 +42,14 @@ body {
   height: 100%;
   background: radial-gradient(
     circle,
-    rgba(255, 255, 255, 0.1) 0%,
-    rgba(255, 240, 245, 0.4) 100%
+    rgba(255, 255, 255, 0) 0%,
+    rgba(0, 0, 0, 0.1) 100%
   );
   pointer-events: none;
   z-index: 0;
-  animation: breatheBg 10s ease-in-out infinite alternate;
 }
 
-@keyframes breatheBg {
-  0% { opacity: 0.8; }
-  100% { opacity: 1; }
-}
-
-/* Sakura Container */
+/* 桜の舞：より自然で幻想的な動きに */
 #sakura-container {
   position: fixed;
   top: 0;
@@ -64,10 +60,9 @@ body {
   z-index: 1;
 }
 
-/* Main App Container */
 #app {
   width: 100%;
-  max-width: 480px; /* Mobile focused */
+  max-width: 480px;
   height: 100%;
   position: relative;
   z-index: 10;
@@ -76,7 +71,6 @@ body {
   align-items: center;
 }
 
-/* Screen Management */
 .screen {
   position: absolute;
   top: 0;
@@ -85,7 +79,7 @@ body {
   height: 100%;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.8s ease-in-out;
+  transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -99,55 +93,61 @@ body {
 
 /* ================= Start Screen ================= */
 .content-glass {
-  background: var(--glass-bg);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  padding: 2.5rem;
-  border-radius: 20px;
-  border: 1px solid var(--glass-border);
+  background: var(--glass-white);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 3rem 2rem;
+  border-radius: 4px; /* 直線的な高級感 */
+  border: 1px solid var(--border-gold);
   text-align: center;
-  box-shadow: 0 10px 40px rgba(194, 24, 91, 0.15);
-  width: 90%;
-  max-width: 400px;
-  animation: floatCard 4s ease-in-out infinite;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
+  width: 85%;
+  max-width: 380px;
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes floatCard {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
+/* 枠線の装飾 */
+.content-glass::before {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  right: 5px;
+  bottom: 5px;
+  border: 1px solid var(--border-gold);
+  pointer-events: none;
 }
 
 .main-title {
   font-family: var(--font-antique);
-  color: var(--deep-red);
-  font-size: 2.2rem;
-  line-height: 1.4;
-  margin-bottom: 1rem;
-  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+  color: var(--vermilion);
+  font-size: 2.4rem;
+  letter-spacing: 0.2em;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
 }
 
 .small-text {
-  font-size: 1rem;
-  color: var(--text-dark);
-  font-weight: 500;
-  letter-spacing: 0.1em;
+  font-size: 0.9rem;
+  color: var(--gold-primary);
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  display: block;
+  margin-bottom: 0.5rem;
 }
 
 .subtitle {
-  font-size: 0.95rem;
-  color: #6d4c41;
-  margin-bottom: 2rem;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 2.5rem;
+  line-height: 1.8;
+  font-weight: 300;
 }
 
 .box-container {
-  margin: 2rem 0;
-  height: 200px;
+  margin: 1rem 0 3rem 0;
+  height: 220px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -156,144 +156,71 @@ body {
 .omikuji-box-img {
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
-  mix-blend-mode: multiply;
+  filter: drop-shadow(0 15px 25px rgba(0, 0, 0, 0.15));
 }
 
-/* Gold Button */
+/* 伝統的な「朱と金」のボタン */
 .gold-btn {
   position: relative;
-  background: linear-gradient(
-    135deg,
-    var(--gold-main) 0%,
-    #ffe082 50%,
-    var(--gold-shadow) 100%
-  );
-  border: none;
-  border-radius: 50px;
-  padding: 1rem 3rem;
+  background-color: var(--vermilion);
+  border: 1px solid var(--gold-accent);
+  padding: 1.2rem 3.5rem;
   font-family: var(--font-antique);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #fff;
   cursor: pointer;
-  overflow: hidden;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.2em;
+  transition: all 0.4s ease;
+  box-shadow: 0 5px 15px rgba(178, 45, 20, 0.3);
 }
 
-.gold-btn:active {
-  transform: scale(0.95);
-}
-
-.btn-shine {
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.4) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  transform: skewX(-25deg);
-  animation: shine 3s infinite;
-}
-
-@keyframes shine {
-  0% {
-    left: -100%;
-  }
-  20% {
-    left: 200%;
-  }
-  100% {
-    left: 200%;
-  }
+.gold-btn:hover {
+  background-color: var(--vermilion-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(178, 45, 20, 0.4);
 }
 
 /* ================= Animation Screen (Shake) ================= */
-.shaking-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-}
-
 .shaking-box {
-  width: 250px; /* Bigger on shake screen */
-  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.3));
-  mix-blend-mode: multiply;
+  width: 280px;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.2));
 }
 
 .shake-anim {
-  animation: shakeBox 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite both;
+  animation: shakeBox 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite both;
 }
 
 @keyframes shakeBox {
-  10%,
-  90% {
-    transform: translate3d(-2px, 0, 0) rotate(-1deg);
-  }
-  20%,
-  80% {
-    transform: translate3d(3px, 0, 0) rotate(2deg);
-  }
-  30%,
-  50%,
-  70% {
-    transform: translate3d(-5px, 0, 0) rotate(-2deg);
-  }
-  40%,
-  60% {
-    transform: translate3d(5px, 0, 0) rotate(2deg);
-  }
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg) translateX(-2px); }
+  75% { transform: rotate(3deg) translateX(2px); }
 }
 
 .shake-text {
-  margin-top: 2rem;
-  color: var(--deep-red);
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-  opacity: 0;
-  animation: pulseText 1.5s infinite;
+  margin-top: 3rem;
+  color: var(--vermilion);
+  font-size: 1.2rem;
+  letter-spacing: 0.5em;
+  font-weight: 400;
+  animation: pulseText 2s infinite;
 }
 
-.screen.active .shake-text {
-  opacity: 1;
-}
-
-@keyframes pulseText {
-  0%,
-  100% {
-    opacity: 0.6;
-    transform: scale(0.98);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.02);
-  }
-}
-
-/* Stick Animation */
 #stick {
   position: absolute;
-  top: 30%; /* Adjust based on box image hole position */
+  top: 40%;
   left: 50%;
-  width: 10px;
-  height: 80px;
-  background: #d4af37;
+  width: 8px;
+  height: 120px;
+  background: linear-gradient(to bottom, #d4af37, #af8b38);
   transform: translateX(-50%) translateY(100px);
   z-index: -1;
-  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border-radius: 2px;
 }
 
 #stick.ejected {
   z-index: 5;
-  transform: translateX(-50%) translateY(-50px) rotate(15deg);
+  transform: translateX(-50%) translateY(-80px) rotate(10deg);
+  transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 /* ================= Result Screen ================= */
@@ -304,22 +231,18 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 20px;
 }
 
 .scroll-bg {
   position: absolute;
-  width: 100%;
-  max-width: 500px;
+  width: 95%;
+  max-width: 450px;
   height: auto;
-  max-height: 90vh;
   z-index: 5;
-  filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.4));
-  mix-blend-mode: multiply;
-  /* Initial state for unfold animation */
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.3));
   transform: scaleY(0);
   transform-origin: center;
-  transition: transform 1s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .result-container.open .scroll-bg {
@@ -329,14 +252,13 @@ body {
 .result-content {
   position: relative;
   z-index: 6;
-  width: 70%; /* Tune to fit inside scroll image width */
-  max-width: 320px;
+  width: 65%;
+  max-width: 300px;
   text-align: center;
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.8s 0.6s, transform 0.8s 0.6s; /* Delayed appearance */
-  color: #4a3b32; /* Ink color */
-  padding-bottom: 2rem;
+  transform: translateY(30px);
+  transition: opacity 1s 0.8s, transform 1s 0.8s;
+  color: var(--ink-black);
 }
 
 .result-container.open .result-content {
@@ -346,90 +268,84 @@ body {
 
 .result-label {
   display: block;
-  font-size: 1rem;
-  color: var(--deep-red);
-  margin-bottom: 0.5rem;
-  font-weight: bold;
+  font-size: 0.85rem;
+  color: var(--gold-primary);
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.3em;
 }
 
 .result-title {
   font-family: var(--font-antique);
-  font-size: 4rem;
-  color: var(--deep-red);
-  margin: 0;
-  line-height: 1;
-  margin-bottom: 1.5rem;
-  border-bottom: 2px solid rgba(194, 24, 91, 0.2);
-  padding-bottom: 1rem;
+  font-size: 3.5rem;
+  color: var(--vermilion);
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(178, 45, 20, 0.15);
   display: inline-block;
-  animation: titleGlow 3s ease-in-out infinite;
 }
 
-@keyframes titleGlow {
-  0%, 100% { text-shadow: 0 0 0px rgba(194, 24, 91, 0); }
-  50% { text-shadow: 0 0 15px rgba(194, 24, 91, 0.4); }
+/* 凶・大凶の場合は色を変える（JSで制御） */
+.result-title.bad-luck {
+  color: #4a4a4a;
 }
 
 .result-overview {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-  font-weight: 500;
+  font-size: 1.05rem;
+  line-height: 2;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+  text-align: justify;
 }
 
 .divider-gold {
   border: 0;
   height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent,
-    var(--gold-main),
-    transparent
-  );
+  background: linear-gradient(to right, transparent, var(--gold-primary), transparent);
   margin: 1.5rem 0;
 }
 
 .detail-row {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   border-bottom: 1px dotted rgba(0, 0, 0, 0.1);
-  padding-bottom: 0.2rem;
+  padding-bottom: 0.3rem;
 }
 
 .detail-label {
-  font-weight: bold;
-  color: #8d6e63;
-  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--gold-primary);
+  font-size: 0.85rem;
 }
 
 .detail-text {
-  font-weight: 500;
+  font-size: 0.9rem;
 }
 
 #retry-btn {
-  margin-top: 2rem;
+  margin-top: 3rem;
   background: transparent;
-  border: 1px solid var(--deep-red);
-  color: var(--deep-red);
-  padding: 0.5rem 2rem;
-  border-radius: 30px;
+  border: none;
+  border-bottom: 1px solid var(--gold-primary);
+  color: var(--gold-primary);
+  padding: 0.3rem 1rem;
   cursor: pointer;
   font-family: var(--font-antique);
+  letter-spacing: 0.1em;
   transition: all 0.3s;
 }
 
 #retry-btn:hover {
-  background: var(--deep-red);
-  color: #fff;
+  color: var(--vermilion);
+  border-color: var(--vermilion);
 }
 
-/* Sakura Petal - handled by JS to create divs */
+/* 桜の花びら */
 .petal {
   position: absolute;
-  background-color: #ffd7e6;
+  background-color: #fff; /* 朱色の背景に映える白 */
   border-radius: 150% 0 150% 0;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
   animation: animate-petal linear infinite;
 }
 
@@ -439,28 +355,11 @@ body {
     top: -10%;
     transform: translateX(0) rotateX(0deg) rotateY(0deg);
   }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
+  15% { opacity: 0.8; }
+  85% { opacity: 0.8; }
   100% {
     opacity: 0;
     top: 100%;
     transform: translateX(100px) rotateX(360deg) rotateY(180deg);
-  }
-}
-
-/* Responsive Handling */
-@media (max-width: 380px) {
-  .main-title {
-    font-size: 1.8rem;
-  }
-  .result-title {
-    font-size: 3rem;
-  }
-  .result-content {
-    width: 80%;
   }
 }
