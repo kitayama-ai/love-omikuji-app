@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="恋の運命を占う、神秘的なおみくじ。あなたの恋路に光を灯します。"
+    />
+    <title>恋結びおみくじ | 今日の運勢と恋の行方</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Antique&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Background Overlay for darkening/tint -->
+    <div class="bg-overlay"></div>
+
+    <!-- Sakura Container -->
+    <div id="sakura-container"></div>
+
+    <main id="app">
+      <!-- SCREEN 1: START -->
+      <section id="start-screen" class="screen active">
+        <div class="content-glass">
+          <h1 class="main-title">
+            <span class="small-text">心ときめく</span><br />
+            恋結びおみくじ
+          </h1>
+          <p class="subtitle">今日のあなたの恋運命を<br />紐解いてみましょう</p>
+
+          <div class="box-container">
+            <img
+              src="assets/box.png"
+              alt="おみくじ箱"
+              class="omikuji-box-img"
+            />
+            // Replace with assets/box.png
+          </div>
+
+          <button id="draw-btn" class="gold-btn">
+            <span class="btn-text">運命を引く</span>
+            <span class="btn-shine"></span>
+          </button>
+        </div>
+      </section>
+
+      <!-- SCREEN 2: ANIMATION -->
+      <section id="anim-screen" class="screen">
+        <div class="shaking-container">
+          <img src="assets/box.png" alt="おみくじ箱" class="shaking-box" />
+          <div class="shake-text">心を込めて...</div>
+        </div>
+        <!-- Stick appearing animation will be handled in CSS/JS -->
+        <div id="stick" class="stick hidden"></div>
+      </section>
+
+      <!-- SCREEN 3: RESULT -->
+      <section id="result-screen" class="screen">
+        <div class="result-container">
+          <img src="assets/scroll.png" alt="結果" class="scroll-bg" />
+          <div class="result-content">
+            <div class="result-header">
+              <span class="result-label">運勢</span>
+              <h2 id="result-title" class="result-title">大吉</h2>
+            </div>
+
+            <div class="result-body">
+              <p id="result-overview" class="result-overview">
+                素晴らしい出会いが訪れる予感。<br />
+                あなたの魅力が最大限に輝く時です。
+              </p>
+              <hr class="divider-gold" />
+              <div class="detail-row">
+                <span class="detail-label">願望</span>
+                <span id="detail-wish" class="detail-text">叶うでしょう</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">待人</span>
+                <span id="detail-wait" class="detail-text">不意に現れます</span>
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">恋愛</span>
+                <span id="detail-love" class="detail-text"
+                  >積極的に動いて吉</span
+                >
+              </div>
+              <div class="detail-row">
+                <span class="detail-label">縁談</span>
+                <span id="detail-match" class="detail-text"
+                  >良縁に恵まれます</span
+                >
+              </div>
+            </div>
+
+            <button id="retry-btn" class="text-btn">もう一度引く</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
